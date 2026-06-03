@@ -1,0 +1,292 @@
+/* src/pages/Opportunities.css */
+
+/* --- Status Button Styles (Keep Existing) --- */
+.status-button.pending {
+    background-color: #ffcc00;
+    color: #000;
+}
+
+.status-button.accepted {
+    background-color: #4CAF50;
+    color: white;
+}
+.status-button.accepted:hover {
+    background-color: #4CAF50;
+}
+
+.status-button.rejected {
+    background-color: #f44336;
+    color: white;
+}
+.status-button.rejected:hover {
+    background-color: #f44336;
+}
+.status-button.pending:hover {
+    background-color: #ffcc00;
+}
+
+/* --- Page Structure --- */
+.opportunities-page-container {
+    background-color: #f7fcfb;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.opportunities-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 80px; 
+    text-align: center;
+}
+
+.opportunities-content h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.highlight-text {
+    color: #00bcd4;
+}
+
+.opportunities-content .subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+/* --- Search and Filter Layout (New/Updated) --- */
+.filter-and-search-container {
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.search-bar-container {
+    display: flex;
+    margin-bottom: 15px; /* Space between search and filters */
+    border: 1px solid #d0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar-container input {
+    flex-grow: 1;
+    padding: 15px 20px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+}
+
+.filters-row {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows filters to wrap on mobile */
+}
+
+.filters-row select {
+    padding: 10px 15px;
+    border: 1px solid #d0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: white;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    min-width: 150px;
+    appearance: none; /* Hide default arrow in some browsers */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px; /* Space for the custom arrow */
+}
+
+.filters-row select:focus {
+    border-color: #00bcd4;
+}
+
+.clear-filters-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    background-color: #f0f0f0;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.clear-filters-btn:hover {
+    background-color: #e0e0e0;
+    color: #00bcd4;
+}
+
+/* --- Opportunity Grid and Card (Keep Existing) --- */
+.opportunities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: left;
+    margin-top: 50px; 
+    margin-bottom: 20px;
+}
+
+.opportunity-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border 0.3s ease-in-out, box-shadow 0.3s;
+}
+.opportunity-card:hover {
+    border: 1px solid #00bcd4;
+    box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.1); 
+}
+
+.card-header-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.ngo-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00bcd4;
+    background-color: #f0f0f0;
+}
+
+.ngo-name-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00bcd4;
+}
+
+.card-content-wrapper {
+    flex-grow: 1;
+}
+
+.opportunity-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.opportunity-card .description {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.skill-tags {
+    margin-bottom: 15px;
+}
+
+.skill-tag {
+    display: inline-block;
+    background-color: #e0f8f5;
+    color: #00bcd4;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.card-footer-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.details-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.posted-by-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.category-tag {
+    color: #444; 
+    font-weight: 600;
+    padding: 0;
+    display: inline-block;
+}
+
+.posted-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.apply-button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 20px;
+}
+
+.apply-button:hover {
+    background-color: #00a0b7;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #888;
+    padding: 50px;
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .opportunities-content {
+        padding: 40px 20px 60px;
+    }
+    
+    .filters-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .filters-row select,
+    .clear-filters-btn {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .search-bar-container input {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+}
