@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
-import axios from 'axios';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
+import axios from "axios";
 import { baseUrl } from "../data/api";
-import { useAuth } from '../../contexts/AuthContext';
-import toast from 'react-hot-toast';
+import { useAuth } from "../../contexts/AuthContext";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const [accountType, setAccountType] = useState('VOLUNTEER');
+  const [accountType, setAccountType] = useState("VOLUNTEER");
 
   const [volunteerName, setVolunteerName] = useState("");
   const [volunteerEmail, setVolunteerEmail] = useState("");
@@ -19,33 +19,34 @@ const Register = () => {
   const [ngoPassword, setNgoPassword] = useState("");
 
   const navigate = useNavigate();
-  const { user } = useAuth()
-  if (user) navigate('/');
+  const { user } = useAuth();
+  if (user) navigate("/");
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("BUTTON CLICKED");
     const payload =
       accountType === "VOLUNTEER"
         ? {
-          fullName: volunteerName,
-          email: volunteerEmail,
-          password: volunteerPassword,
-          role: "VOLUNTEER",
-        }
+            fullName: volunteerName,
+            email: volunteerEmail,
+            password: volunteerPassword,
+            role: "VOLUNTEER",
+          }
         : {
-          fullName: ngoName,
-          email: ngoEmail,
-          password: ngoPassword,
-          role: "NGO",
-        };
+            fullName: ngoName,
+            email: ngoEmail,
+            password: ngoPassword,
+            role: "NGO",
+          };
 
     try {
+      console.log("About to call API");
+      console.log(baseUrl);
       const res = await axios.post(`${baseUrl}/auth/register`, payload, {
         withCredentials: true,
       });
 
-      toast.success(res.data?.message)
-
+      toast.success(res.data?.message);
 
       if (res.data?.user?.role === "VOLUNTEER") {
         navigate("/personalize/volunteer");
@@ -62,27 +63,29 @@ const Register = () => {
     <div className="auth-container">
       <div className="auth-card">
         <h1>Join SkillBridge</h1>
-        <p className="subtitle">Create your account and start making an impact</p>
+        <p className="subtitle">
+          Create your account and start making an impact
+        </p>
 
         <div className="account-type-selector">
           <button
             type="button"
-            className={`selector-btn ${accountType === 'VOLUNTEER' ? 'active' : ''}`}
-            onClick={() => setAccountType('VOLUNTEER')}
+            className={`selector-btn ${accountType === "VOLUNTEER" ? "active" : ""}`}
+            onClick={() => setAccountType("VOLUNTEER")}
           >
             <span className="icon">👤</span> Volunteer
           </button>
           <button
             type="button"
-            className={`selector-btn ${accountType === 'ngo' ? 'active' : ''}`}
-            onClick={() => setAccountType('ngo')}
+            className={`selector-btn ${accountType === "ngo" ? "active" : ""}`}
+            onClick={() => setAccountType("ngo")}
           >
             <span className="icon">🏢</span> NGO
           </button>
         </div>
 
         <form onSubmit={handleSubmit}>
-          {accountType === 'VOLUNTEER' ? (
+          {accountType === "VOLUNTEER" ? (
             <>
               <div className="form-group">
                 <label htmlFor="volunteerName">Full Name</label>
@@ -118,8 +121,8 @@ const Register = () => {
                     required
                     minLength={8}
                   />
-                  <i 
-                    className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle-icon`}
+                  <i
+                    className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"} password-toggle-icon`}
                     onClick={() => setShowPassword(!showPassword)}
                     title={showPassword ? "Hide password" : "Show password"}
                   ></i>
@@ -185,8 +188,8 @@ const Register = () => {
                     required
                     minLength={8}
                   />
-                  <i 
-                    className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle-icon`}
+                  <i
+                    className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"} password-toggle-icon`}
                     onClick={() => setShowPassword(!showPassword)}
                     title={showPassword ? "Hide password" : "Show password"}
                   ></i>
@@ -220,7 +223,7 @@ const Register = () => {
         </form>
 
         <p className="auth-footer-text">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link to="/login" className="auth-link">
             Log in
           </Link>
@@ -230,4 +233,4 @@ const Register = () => {
   );
 };
 
-export default Register
+export default Register;
