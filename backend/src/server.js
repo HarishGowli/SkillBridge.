@@ -24,10 +24,21 @@ dotenv.config();
 // connectDB() - Removed from here, moved to the bottom to ensure server starts after DB connection
 
 const app = express()
+const allowedOrigins = [
+    "http://localhost:3000",
+    "https://skillbridge-frontend-kt5o.onrender.com"
+];
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true
-}))
+}));
 app.use(express.json())
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads')); // Serve static files from 'uploads' directory
@@ -53,7 +64,10 @@ const server = http.createServer(app)
 // Socket.IO Logic
 const io = new Server(server, {
     cors: {
-        origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+        origin: [
+            "http://localhost:3000",
+            "https://skillbridge-frontend-kt5o.onrender.com"
+        ],
         methods: ["GET", "POST"],
         credentials: true
     }

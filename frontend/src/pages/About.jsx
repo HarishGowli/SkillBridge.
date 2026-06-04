@@ -50,6 +50,7 @@ const About = () => {
         <section className="about-section team-section">
           <h2>Meet the <span className="skill-highlight">Team</span></h2>
           <p className="section-subtitle">We are a small but passionate group dedicated to technology for good.</p>
+          
           <div className="team-grid">
             <div className="team-member-card">
               <div style={{ backgroundImage: "url(https://avatars.githubusercontent.com/u/174807539?v=4)", backgroundSize: "cover", backgroundRepeat: 'no-repeat' }} className="team-photo-placeholder"></div>
