@@ -20,14 +20,12 @@ function Login() {
     const credentials = { email, password };
 
     try {
-      console.log("About to call API");
-      console.log(baseUrl);
       const result = await login(credentials); // Await the API call
 
       if (result.success) {
         // Get the role from the successful API response
         const userRole = result.user.role;
-        toast.success(`Login successful`);
+        toast.success(`Login successful`)
         setTimeout(() => {
           if (userRole === "NGO") {
             navigate("/dashboard/ngo");
@@ -81,8 +79,8 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-              <i
-                className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"} password-toggle-icon`}
+              <i 
+                className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle-icon`}
                 onClick={() => setShowPassword(!showPassword)}
                 title={showPassword ? "Hide password" : "Show password"}
               ></i>
