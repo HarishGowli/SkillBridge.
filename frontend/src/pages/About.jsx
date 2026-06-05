@@ -52,12 +52,15 @@ const About = () => {
           <p className="section-subtitle">We are a small but passionate group dedicated to technology for good.</p>
           
           <div className="team-grid">
-            <div className="team-member-card">
-              <div style={{ backgroundImage: "url(https://avatars.githubusercontent.com/u/174807539?v=4)", backgroundSize: "cover", backgroundRepeat: 'no-repeat' }} className="team-photo-placeholder"></div>
-              <h4>Shaik Fayaz</h4>
-              <p>Design, Frontend Dev</p>
-          </div>
 
+            <a style={{ textDecoration: "none", color: "black" }} href="https://github.com/ShaikFayaz042" target='_blank' rel='noreferrer'>
+              <div className="team-member-card">
+                <div style={{ backgroundImage: "url(https://avatars.githubusercontent.com/u/174807539?v=4)", backgroundSize: "cover", backgroundRepeat: 'no-repeat' }} className="team-photo-placeholder"></div>
+                <h4>Shaik Fayaz</h4>
+                <p>Full Stack Dev</p>
+              </div>
+            </a>
+            
             <a style={{ textDecoration: "none", color: "black" }} href="https://github.com/HarishGowli" target='_blank' rel='noreferrer'>
               <div className="team-member-card">
                 <div style={{ backgroundImage: "url(https://avatars.githubusercontent.com/u/185912921?s=400&u=da5e4630ef833b01ddcbdec5825ad3dfb7e3f6a3&v=4)", backgroundSize: "cover", backgroundRepeat: 'no-repeat' }} className="team-photo-placeholder"></div>
