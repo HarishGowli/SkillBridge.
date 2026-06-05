@@ -50,10 +50,10 @@ const Footer = () => {
           © 2024 SkillBridge. All rights reserved.
         </p>
         <div className="social-links">
-          <a href="https://www.infosys.com/" aria-label="Twitter"><i className="fa-brands fa-twitter"></i></a> 
-          <a href="https://www.infosys.com/" aria-label="LinkedIn"><i className="fa-brands fa-square-linkedin"></i></a>
-          <a href="https://www.infosys.com/" aria-label="GitHub"><i className="fa-brands fa-github"></i></a>
-          <a href="https://www.infosys.com/" aria-label="Email"><i className="fa-solid fa-square-envelope"></i></a>
+          <a href="#" aria-label="Twitter"><i className="fa-brands fa-twitter"></i></a> 
+          <a href="#" aria-label="LinkedIn"><i className="fa-brands fa-square-linkedin"></i></a>
+          <a href="#" aria-label="GitHub"><i className="fa-brands fa-github"></i></a>
+          <a href="#" aria-label="Email"><i className="fa-solid fa-square-envelope"></i></a>
         </div>
       </div>
     </footer>
