@@ -1,5 +1,5 @@
 // frontend/src/App.jsx
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 
 import Login from "./pages/auth/Login.jsx";
@@ -19,6 +19,8 @@ import VolunteerDash from "./pages/dashboard/VolunteerDash.jsx";
 import Chat from "./pages/Chats/Chat.jsx";
 import Profile from './pages/profiles/Profile.jsx';
 import { Toaster } from "react-hot-toast";
+import RequireAuth from "./components/RequireAuth.jsx";
+import PublicRoute from "./components/PublicRoute.jsx";
 
 function App() {
   return (
@@ -27,22 +29,120 @@ function App() {
         <Navbar />
         <div className="main-content-wrapper">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/opportunities" element={<OpportunityListingPage />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/dashboard/ngo" element={<NgoDash />} />
-            <Route path="/dashboard/volunteer" element={<VolunteerDash />} />
-            <Route path="/personalize/ngo" element={<NgoPersonalization />} />
-            <Route path="/personalize/volunteer" element={<VolunteerPersonalization />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/chat/:otherUserId" element={<Chat />} />
-            <Route path="*" element={<h1>404 Page Not Found!</h1>} />
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route
+              path="/home"
+              element={
+                <RequireAuth>
+                  <Home />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <PublicRoute>
+                  <ForgotPassword />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/reset-password/:token"
+              element={
+                <PublicRoute>
+                  <ResetPassword />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/opportunities"
+              element={
+                <RequireAuth>
+                  <OpportunityListingPage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <RequireAuth>
+                  <Contact />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <RequireAuth>
+                  <About />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/dashboard/ngo"
+              element={
+                <RequireAuth>
+                  <NgoDash />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/dashboard/volunteer"
+              element={
+                <RequireAuth>
+                  <VolunteerDash />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/personalize/ngo"
+              element={
+                <RequireAuth>
+                  <NgoPersonalization />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/personalize/volunteer"
+              element={
+                <RequireAuth>
+                  <VolunteerPersonalization />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <RequireAuth>
+                  <Profile />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/chat/:otherUserId"
+              element={
+                <RequireAuth>
+                  <Chat />
+                </RequireAuth>
+              }
+            />
+            <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
           <Toaster
             position="bottom-right"

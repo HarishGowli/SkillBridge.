@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Login.css";
 import toast from "react-hot-toast";
@@ -9,9 +9,15 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const { user, login } = useAuth(); // Assuming login is a function that makes an API call
+  const location = useLocation();
+  const { user, login, loading } = useAuth();
+  const from = location.state?.from?.pathname || "/home";
 
-  if (user) navigate(`/dashboard/${user.role.toLowerCase()}`);
+  useEffect(() => {
+    if (!loading && user) {
+      navigate(from, { replace: true });
+    }
+  }, [user, loading, navigate, from]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,18 +29,9 @@ function Login() {
       const result = await login(credentials); // Await the API call
 
       if (result.success) {
-        // Get the role from the successful API response
-        const userRole = result.user.role;
-        toast.success(`Login successful`)
-        setTimeout(() => {
-          if (userRole === "NGO") {
-            navigate("/dashboard/ngo");
-          } else if (userRole === "VOLUNTEER") {
-            navigate("/dashboard/volunteer");
-          }
-        }, 5000);
+        toast.success("Login successful");
+        // Redirect happens in the useEffect after successful auth state update.
       } else {
-        // Handle login failure (e.g., "Invalid credentials" from the server)
         toast.error(result.message);
       }
     } catch (error) {

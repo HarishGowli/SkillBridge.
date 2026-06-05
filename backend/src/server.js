@@ -4,6 +4,8 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import http from 'http'
+import path from 'path'
+import { fileURLToPath } from 'url'
 import { Server } from 'socket.io' // Removed unused import { Socket }
 import { connectDB } from './config/db.js';
 import cookieParser from 'cookie-parser'
@@ -23,6 +25,8 @@ import User from './models/User.js'
 dotenv.config();
 // connectDB() - Removed from here, moved to the bottom to ensure server starts after DB connection
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express()
 const allowedOrigins = [
     "http://localhost:3000",
@@ -54,9 +58,21 @@ app.use('/api/applications/', applicationRouter)
 
 app.use('/api/chats/',chatRouter)
 
-app.get('/', (req, res) => {
-    res.json('welcome to backend')
-})
+if (process.env.NODE_ENV === 'production') {
+    const frontendBuildPath = path.resolve(__dirname, '..', '..', 'frontend', 'build');
+    app.use(express.static(frontendBuildPath));
+
+    app.get('*', (req, res) => {
+        if (req.path.startsWith('/api') || req.path.startsWith('/uploads')) {
+            return res.status(404).json({ message: 'API route not found' });
+        }
+        res.sendFile(path.join(frontendBuildPath, 'index.html'));
+    });
+} else {
+    app.get('/api', (req, res) => {
+        res.json('welcome to backend');
+    });
+}
 
 const server = http.createServer(app)
 
