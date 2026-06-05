@@ -10,7 +10,7 @@ import path from 'path'; // ⭐ Used for file path manipulation
 const getBaseUrl = () => {
     // Replace with your actual deployed URL or dynamic host setup
     return process.env.NODE_ENV === 'production' 
-        ? 'https://skillbridge-frontend-kt5o.onrender.com/uploads' 
+        ? 'https://skill-bridge-1ujs.onrender.com/uploads' 
         : 'http://localhost:4000/uploads'; // Assuming files are served from /uploads
 };
 // --------------------------------------------------------
