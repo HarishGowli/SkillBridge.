@@ -70,7 +70,7 @@ export const createOpportunity = async (req, res) => {
                 <p>Happy volunteering!</p>
             `;
             
-            sendEmail(volunteer.email, emailSubject, emailText, emailHtml);
+            // sendEmail(volunteer.email, emailSubject, emailText, emailHtml);
             
         }
 

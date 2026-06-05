@@ -167,12 +167,12 @@ export const forgotPassword = async (req, res) => {
     const subject = "Password Reset Request";
     const text = `Hello ${user.fullName || ""},\n\nYou requested a password reset. Click the link below to reset your password. This link is valid for 15 minutes.\n\n${resetUrl}\n\nIf you did not request this, please ignore this email.`;
 
-    await sendEmail({
-      to: user.email,
-      subject,
-      text,
-      html: `<p>${text.replace(/\n/g, "<br/>")}</p>`,
-    });
+    // await sendEmail({
+    //   to: user.email,
+    //   subject,
+    //   text,
+    //   html: `<p>${text.replace(/\n/g, "<br/>")}</p>`,
+    // });
 
     res.status(200).json({ message: "Password reset email sent" });
   } catch (error) {
