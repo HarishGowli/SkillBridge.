@@ -57,7 +57,7 @@ const About = () => {
               <div className="team-member-card">
                 <div style={{ backgroundImage: "url(https://avatars.githubusercontent.com/u/174807539?v=4)", backgroundSize: "cover", backgroundRepeat: 'no-repeat' }} className="team-photo-placeholder"></div>
                 <h4>Shaik Fayaz</h4>
-                <p>Full Stack Dev</p>
+                <p>UI/UX Designer</p>
               </div>
             </a>
             
