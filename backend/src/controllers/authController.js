@@ -129,8 +129,15 @@ export const getMe = async (req, res) => {
 
 // LOGOUT USER
 export const logoutUser = (req, res) => {
-  res.clearCookie("accessToken"); // Clear the JWT cookie
-  res.status(200).json({ message: "Logged out successfully" });
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
+
+  res.status(200).json({
+    message: "Logged out successfully",
+  });
 };
 
 // FORGOT PASSWORD - send reset email
